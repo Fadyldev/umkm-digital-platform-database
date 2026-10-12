@@ -1,0 +1,163 @@
+[
+  {
+    "id": "068ead50-c178-44d2-acd6-2e7abe5ba25e",
+    "order_number": "ORD-578814-260",
+    "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "customer_name": "jhjhdj",
+    "customer_phone": "85889389859644",
+    "customer_note": "",
+    "order_type": "dine_in",
+    "table_number": null,
+    "total_amount": "22000.00",
+    "status": "pending",
+    "payment_status": "unpaid",
+    "payment_method": "qris",
+    "created_at": "2026-10-12T08:26:15.678Z",
+    "updated_at": "2026-10-12T08:26:15.678Z",
+    "items": [
+      {
+        "product_id": "ce70eb72-9524-42f4-9580-46acd0b7fbd9",
+        "product_name": "Mie Goreng Spesial Kornet Keju",
+        "quantity": 1,
+        "price": 22000,
+        "subtotal": 22000,
+        "item_note": ""
+      }
+    ]
+  },
+  {
+    "id": "c115041e-92c2-4820-a83f-a56c4a3f5271",
+    "order_number": "ORD-446988-998",
+    "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "customer_name": "prabowo",
+    "customer_phone": "087656934367",
+    "customer_note": "",
+    "order_type": "dine_in",
+    "table_number": null,
+    "total_amount": "10000.00",
+    "status": "pending",
+    "payment_status": "unpaid",
+    "payment_method": "cash",
+    "created_at": "2026-10-12T08:24:03.852Z",
+    "updated_at": "2026-10-12T08:24:03.852Z",
+    "items": [
+      {
+        "product_id": "1e0ea402-d6f9-4a03-ab5c-a50c8e48bffa",
+        "product_name": "Kopi Robusta Tubruk Jawa",
+        "quantity": 1,
+        "price": 10000,
+        "subtotal": 10000,
+        "item_note": ""
+      }
+    ]
+  },
+  {
+    "id": "ord-1791452070468",
+    "order_number": "ORD-070468",
+    "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "customer_name": "Test Meja Tiga",
+    "customer_phone": "081234567890",
+    "customer_note": "Es teh manis jangan terlalu manis",
+    "order_type": "dine_in",
+    "table_number": "Meja 03",
+    "total_amount": 36000,
+    "status": "pending",
+    "payment_status": "unpaid",
+    "payment_method": "cash",
+    "created_at": "2026-10-08T09:34:30.468Z",
+    "updated_at": "2026-10-08T09:34:30.468Z",
+    "items": [
+      {
+        "id": "item-1791452070468-0",
+        "order_id": "ord-1791452070468",
+        "product_id": "p1111111-9c0b-4ef8-bb6d-6bb9bd380111",
+        "product_name": "Kopi Susu Gula Aren",
+        "quantity": 2,
+        "price": 18000,
+        "subtotal": 36000,
+        "item_note": "Less sugar",
+        "created_at": "2026-10-08T09:34:30.468Z"
+      }
+    ]
+  },
+  {
+    "id": "o1111111-9c0b-4ef8-bb6d-6bb9bd380111",
+    "order_number": "ORD-WARKOP-001",
+    "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "customer_name": "Dimas Aditya",
+    "customer_phone": "081211112222",
+    "customer_note": "Kopi less sugar ya mas",
+    "order_type": "dine_in",
+    "table_number": "Meja 05",
+    "total_amount": 42000,
+    "status": "pending",
+    "payment_status": "paid",
+    "payment_method": "qris",
+    "created_at": "2026-10-08T09:24:12.761Z",
+    "updated_at": "2026-10-08T09:34:12.761Z",
+    "items": [
+      {
+        "id": "i1111111-9c0b-4ef8-bb6d-6bb9bd380111",
+        "order_id": "o1111111-9c0b-4ef8-bb6d-6bb9bd380111",
+        "product_id": "p1111111-9c0b-4ef8-bb6d-6bb9bd380111",
+        "product_name": "Kopi Susu Gula Aren",
+        "quantity": 2,
+        "price": 18000,
+        "subtotal": 36000,
+        "item_note": "Less sugar 50%",
+        "created_at": "2026-10-08T09:34:12.761Z"
+      },
+      {
+        "id": "i1111112-9c0b-4ef8-bb6d-6bb9bd380112",
+        "order_id": "o1111111-9c0b-4ef8-bb6d-6bb9bd380111",
+        "product_id": "p1111112-9c0b-4ef8-bb6d-6bb9bd380112",
+        "product_name": "Es Teh Manis Jumbo",
+        "quantity": 1,
+        "price": 6000,
+        "subtotal": 6000,
+        "item_note": "",
+        "created_at": "2026-10-08T09:34:12.761Z"
+      }
+    ]
+  },
+  {
+    "id": "o1111112-9c0b-4ef8-bb6d-6bb9bd380112",
+    "order_number": "ORD-WARKOP-002",
+    "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+    "customer_name": "Rian Pratama",
+    "customer_phone": "085799998888",
+    "customer_note": "Indomie pedas sedang",
+    "order_type": "dine_in",
+    "table_number": "Meja 02",
+    "total_amount": 36000,
+    "status": "processing",
+    "payment_status": "paid",
+    "payment_method": "cash",
+    "created_at": "2026-10-08T08:34:12.761Z",
+    "updated_at": "2026-10-08T09:34:12.761Z",
+    "items": [
+      {
+        "id": "i1111113-9c0b-4ef8-bb6d-6bb9bd380113",
+        "order_id": "o1111112-9c0b-4ef8-bb6d-6bb9bd380112",
+        "product_id": "p1111131-9c0b-4ef8-bb6d-6bb9bd380131",
+        "product_name": "Indomie Goreng Dok-dok Telur Kornet",
+        "quantity": 1,
+        "price": 20000,
+        "subtotal": 20000,
+        "item_note": "Pedas sedang",
+        "created_at": "2026-10-08T09:34:12.761Z"
+      },
+      {
+        "id": "i1111114-9c0b-4ef8-bb6d-6bb9bd380114",
+        "order_id": "o1111112-9c0b-4ef8-bb6d-6bb9bd380112",
+        "product_id": "p1111141-9c0b-4ef8-bb6d-6bb9bd380141",
+        "product_name": "Roti Bakar Cokelat Keju Tebal",
+        "quantity": 1,
+        "price": 16000,
+        "subtotal": 16000,
+        "item_note": "",
+        "created_at": "2026-10-08T09:34:12.761Z"
+      }
+    ]
+  }
+]

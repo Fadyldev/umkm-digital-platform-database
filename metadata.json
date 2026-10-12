@@ -1,0 +1,6 @@
+{
+  "name": "UMKM Digital Platform Database",
+  "description": "Arsitektur dan skema database PostgreSQL multi-tenant untuk platform digital UMKM.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
