@@ -39,7 +39,7 @@ import { api } from '../services/api';
 import { ReceiptModal } from '../components/ReceiptModal';
 import { TableQRManager } from '../components/TableQRManager';
 import { InstallPrompt, InstallButtonBadge } from '../components/InstallPrompt';
-
+import { RevenueChart } from '../components/RevenueChart';
 interface AdminDashboardProps {
   currentUser: User;
   currentBusiness: Business;
@@ -988,7 +988,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <span className="text-[11px] text-neutral-500 mt-1 block">Dalam {stats.total_categories} kategori</span>
                 </div>
               </div>
-
+                 {/* Grafik Pemasukan Mingguan & Bulanan */}
+              <RevenueChart orders={orders} />
               {/* Pesanan Terbaru */}
               <div className="bg-white rounded-2xl border border-neutral-200 shadow-xs overflow-hidden">
                 <div className="p-4 border-b border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
