@@ -24,6 +24,70 @@ async function safeJson(res: Response, fallbackMsg: string): Promise<any> {
   return data;
 }
 
+/**
+ * Kompresi gambar otomatis di sisi browser (Client-Side Canvas Compression)
+ * Mengecilkan foto kamera HP 5-10MB menjadi ~80-150KB WebP tanpa mengurangi ketajaman di layar.
+ */
+async function compressImageFile(file: File, maxWidth = 1000, quality = 0.8): Promise<File> {
+  if (!file || !file.type.startsWith('image/') || file.type === 'image/svg+xml' || file.type === 'image/gif') {
+    return file;
+  }
+
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target?.result as string;
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        // Skalakan proporsional jika resolusi melebihi maxWidth
+        if (width > maxWidth || height > maxWidth) {
+          if (width > height) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          } else {
+            width = Math.round((width * maxWidth) / height);
+            height = maxWidth;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          resolve(file);
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
+              resolve(file);
+              return;
+            }
+            const cleanName = file.name.replace(/\.[^/.]+$/, '') + '.webp';
+            const compressedFile = new File([blob], cleanName, {
+              type: 'image/webp',
+              lastModified: Date.now(),
+            });
+            // Gunakan hasil kompresi hanya jika ukurannya lebih hemat
+            resolve(compressedFile.size < file.size ? compressedFile : file);
+          },
+          'image/webp',
+          quality
+        );
+      };
+      img.onerror = () => resolve(file);
+    };
+    reader.onerror = () => resolve(file);
+  });
+}
+
 export const api = {
   // -------------------------------------------------------------
   // PUBLIC ENDPOINTS
@@ -130,7 +194,7 @@ export const api = {
       body: JSON.stringify(payload),
     });
     const json = await safeJson(res, 'Gagal mengubah password');
-    return json;
+    return json.data;
   },
 
   async setupInitialAccount(): Promise<{ success: boolean; message: string }> {
@@ -244,8 +308,9 @@ export const api = {
   // ADMIN FILE UPLOADS (SUPABASE STORAGE VIA EXPRESS)
   // -------------------------------------------------------------
   async uploadProductImage(file: File): Promise<string> {
+    const optimizedFile = await compressImageFile(file);
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', optimizedFile);
 
     const res = await fetch(`${API_BASE}/admin/upload/product`, {
       method: 'POST',
@@ -257,8 +322,9 @@ export const api = {
   },
 
   async uploadCategoryImage(file: File): Promise<string> {
+    const optimizedFile = await compressImageFile(file);
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', optimizedFile);
 
     const res = await fetch(`${API_BASE}/admin/upload/category`, {
       method: 'POST',
@@ -270,8 +336,9 @@ export const api = {
   },
 
   async uploadLogoImage(file: File): Promise<string> {
+    const optimizedFile = await compressImageFile(file);
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', optimizedFile);
 
     const res = await fetch(`${API_BASE}/admin/upload/logo`, {
       method: 'POST',
@@ -283,8 +350,9 @@ export const api = {
   },
 
   async uploadQrisImage(file: File): Promise<string> {
+    const optimizedFile = await compressImageFile(file);
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', optimizedFile);
 
     const res = await fetch(`${API_BASE}/admin/upload/qris`, {
       method: 'POST',
