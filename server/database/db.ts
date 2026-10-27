@@ -44,7 +44,7 @@ export async function initDatabase(): Promise<boolean> {
       },
       max: 10,
       idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 3500,
+      connectionTimeoutMillis: 15000,
     });
 
     candidatePool.on('error', (err) => {

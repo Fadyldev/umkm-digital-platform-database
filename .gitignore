@@ -6,3 +6,5 @@ coverage/
 *.log
 .env*
 !.env.example
+local_storage_data.json 
+local_orders_storage.json 
