@@ -1460,7 +1460,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           )}
 
           {/* ========================================================= */}
-          {/* TAB: GENERATOR QR CODE MEJA (DINE-IN) */}
+          {/* TAB: Stand Akrilik QR Menu (Universal) */}
           {/* ========================================================= */}
           {activeTab === 'tables' && (
             <TableQRManager business={business} />
