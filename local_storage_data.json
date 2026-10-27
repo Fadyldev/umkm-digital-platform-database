@@ -16,8 +16,8 @@
         "catatan": "Buka Setiap Hari"
       },
       "is_active": true,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.409Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     }
   ],
   "users": [
@@ -26,12 +26,12 @@
       "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
       "full_name": "Budi Santoso",
       "email": "owner.warkop@example.com",
-      "password_hash": "$2b$10$s47964VDTB.ecr/5vBO31eKr8CSv3UEVoeQuj1fdvrtZewOCzK666",
+      "password_hash": "$2b$10$aZNesV2KEfV2i7E8W.VAieH.sGwIQh0iIp4qlVGNujPt5wrI55Hay",
       "role": "owner",
       "phone": "081234567890",
       "is_active": true,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     }
   ],
   "settings": [
@@ -56,8 +56,8 @@
           "cash_enabled": true
         }
       },
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     }
   ],
   "categories": [
@@ -70,8 +70,8 @@
       "image_url": "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=400&q=80",
       "display_order": 1,
       "is_active": true,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "c1111112-9c0b-4ef8-bb6d-6bb9bd380112",
@@ -82,8 +82,8 @@
       "image_url": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=400&q=80",
       "display_order": 2,
       "is_active": true,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "c1111113-9c0b-4ef8-bb6d-6bb9bd380113",
@@ -94,8 +94,8 @@
       "image_url": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=400&q=80",
       "display_order": 3,
       "is_active": true,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "c1111114-9c0b-4ef8-bb6d-6bb9bd380114",
@@ -106,8 +106,8 @@
       "image_url": "https://images.unsplash.com/photo-1584776296944-ab6fb57b0bdd?auto=format&fit=crop&w=400&q=80",
       "display_order": 4,
       "is_active": true,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "c1111115-9c0b-4ef8-bb6d-6bb9bd380115",
@@ -118,8 +118,8 @@
       "image_url": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&w=400&q=80",
       "display_order": 5,
       "is_active": true,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     }
   ],
   "products": [
@@ -135,8 +135,8 @@
       "image_url": "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 1,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111112-9c0b-4ef8-bb6d-6bb9bd380112",
@@ -150,8 +150,8 @@
       "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 2,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111113-9c0b-4ef8-bb6d-6bb9bd380113",
@@ -165,8 +165,8 @@
       "image_url": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 3,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111121-9c0b-4ef8-bb6d-6bb9bd380121",
@@ -180,8 +180,8 @@
       "image_url": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 1,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111122-9c0b-4ef8-bb6d-6bb9bd380122",
@@ -195,8 +195,8 @@
       "image_url": "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 2,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111123-9c0b-4ef8-bb6d-6bb9bd380123",
@@ -210,8 +210,8 @@
       "image_url": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 3,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.760Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111131-9c0b-4ef8-bb6d-6bb9bd380131",
@@ -225,8 +225,8 @@
       "image_url": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 1,
-      "created_at": "2026-10-08T09:34:12.760Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111132-9c0b-4ef8-bb6d-6bb9bd380132",
@@ -240,8 +240,8 @@
       "image_url": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 2,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111133-9c0b-4ef8-bb6d-6bb9bd380133",
@@ -255,8 +255,8 @@
       "image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 3,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111141-9c0b-4ef8-bb6d-6bb9bd380141",
@@ -270,8 +270,8 @@
       "image_url": "https://images.unsplash.com/photo-1584776296944-ab6fb57b0bdd?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 1,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111142-9c0b-4ef8-bb6d-6bb9bd380142",
@@ -285,8 +285,8 @@
       "image_url": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 2,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111143-9c0b-4ef8-bb6d-6bb9bd380143",
@@ -300,8 +300,8 @@
       "image_url": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 3,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111144-9c0b-4ef8-bb6d-6bb9bd380144",
@@ -315,8 +315,8 @@
       "image_url": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 4,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111145-9c0b-4ef8-bb6d-6bb9bd380145",
@@ -330,8 +330,8 @@
       "image_url": "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 5,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111151-9c0b-4ef8-bb6d-6bb9bd380151",
@@ -345,8 +345,8 @@
       "image_url": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 1,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111152-9c0b-4ef8-bb6d-6bb9bd380152",
@@ -360,8 +360,8 @@
       "image_url": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 2,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     },
     {
       "id": "p1111153-9c0b-4ef8-bb6d-6bb9bd380153",
@@ -375,92 +375,11 @@
       "image_url": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80",
       "is_available": true,
       "display_order": 3,
-      "created_at": "2026-10-08T09:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z"
+      "created_at": "2026-10-27T11:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z"
     }
   ],
   "orders": [
-    {
-      "id": "068ead50-c178-44d2-acd6-2e7abe5ba25e",
-      "order_number": "ORD-578814-260",
-      "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-      "customer_name": "jhjhdj",
-      "customer_phone": "85889389859644",
-      "customer_note": "",
-      "order_type": "dine_in",
-      "table_number": null,
-      "total_amount": "22000.00",
-      "status": "pending",
-      "payment_status": "unpaid",
-      "payment_method": "qris",
-      "created_at": "2026-10-12T08:26:15.678Z",
-      "updated_at": "2026-10-12T08:26:15.678Z",
-      "items": [
-        {
-          "product_id": "ce70eb72-9524-42f4-9580-46acd0b7fbd9",
-          "product_name": "Mie Goreng Spesial Kornet Keju",
-          "quantity": 1,
-          "price": 22000,
-          "subtotal": 22000,
-          "item_note": ""
-        }
-      ]
-    },
-    {
-      "id": "c115041e-92c2-4820-a83f-a56c4a3f5271",
-      "order_number": "ORD-446988-998",
-      "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-      "customer_name": "prabowo",
-      "customer_phone": "087656934367",
-      "customer_note": "",
-      "order_type": "dine_in",
-      "table_number": null,
-      "total_amount": "10000.00",
-      "status": "pending",
-      "payment_status": "unpaid",
-      "payment_method": "cash",
-      "created_at": "2026-10-12T08:24:03.852Z",
-      "updated_at": "2026-10-12T08:24:03.852Z",
-      "items": [
-        {
-          "product_id": "1e0ea402-d6f9-4a03-ab5c-a50c8e48bffa",
-          "product_name": "Kopi Robusta Tubruk Jawa",
-          "quantity": 1,
-          "price": 10000,
-          "subtotal": 10000,
-          "item_note": ""
-        }
-      ]
-    },
-    {
-      "id": "ord-1791452070468",
-      "order_number": "ORD-070468",
-      "business_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-      "customer_name": "Test Meja Tiga",
-      "customer_phone": "081234567890",
-      "customer_note": "Es teh manis jangan terlalu manis",
-      "order_type": "dine_in",
-      "table_number": "Meja 03",
-      "total_amount": 36000,
-      "status": "pending",
-      "payment_status": "unpaid",
-      "payment_method": "cash",
-      "created_at": "2026-10-08T09:34:30.468Z",
-      "updated_at": "2026-10-08T09:34:30.468Z",
-      "items": [
-        {
-          "id": "item-1791452070468-0",
-          "order_id": "ord-1791452070468",
-          "product_id": "p1111111-9c0b-4ef8-bb6d-6bb9bd380111",
-          "product_name": "Kopi Susu Gula Aren",
-          "quantity": 2,
-          "price": 18000,
-          "subtotal": 36000,
-          "item_note": "Less sugar",
-          "created_at": "2026-10-08T09:34:30.468Z"
-        }
-      ]
-    },
     {
       "id": "o1111111-9c0b-4ef8-bb6d-6bb9bd380111",
       "order_number": "ORD-WARKOP-001",
@@ -474,8 +393,8 @@
       "status": "pending",
       "payment_status": "paid",
       "payment_method": "qris",
-      "created_at": "2026-10-08T09:24:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z",
+      "created_at": "2026-10-27T11:06:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z",
       "items": [
         {
           "id": "i1111111-9c0b-4ef8-bb6d-6bb9bd380111",
@@ -486,7 +405,7 @@
           "price": 18000,
           "subtotal": 36000,
           "item_note": "Less sugar 50%",
-          "created_at": "2026-10-08T09:34:12.761Z"
+          "created_at": "2026-10-27T11:16:03.411Z"
         },
         {
           "id": "i1111112-9c0b-4ef8-bb6d-6bb9bd380112",
@@ -497,7 +416,7 @@
           "price": 6000,
           "subtotal": 6000,
           "item_note": "",
-          "created_at": "2026-10-08T09:34:12.761Z"
+          "created_at": "2026-10-27T11:16:03.411Z"
         }
       ]
     },
@@ -514,8 +433,8 @@
       "status": "processing",
       "payment_status": "paid",
       "payment_method": "cash",
-      "created_at": "2026-10-08T08:34:12.761Z",
-      "updated_at": "2026-10-08T09:34:12.761Z",
+      "created_at": "2026-10-27T10:16:03.411Z",
+      "updated_at": "2026-10-27T11:16:03.411Z",
       "items": [
         {
           "id": "i1111113-9c0b-4ef8-bb6d-6bb9bd380113",
@@ -526,7 +445,7 @@
           "price": 20000,
           "subtotal": 20000,
           "item_note": "Pedas sedang",
-          "created_at": "2026-10-08T09:34:12.761Z"
+          "created_at": "2026-10-27T11:16:03.411Z"
         },
         {
           "id": "i1111114-9c0b-4ef8-bb6d-6bb9bd380114",
@@ -537,7 +456,7 @@
           "price": 16000,
           "subtotal": 16000,
           "item_note": "",
-          "created_at": "2026-10-08T09:34:12.761Z"
+          "created_at": "2026-10-27T11:16:03.411Z"
         }
       ]
     }
