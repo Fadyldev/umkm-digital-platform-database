@@ -452,24 +452,26 @@ export const PublicCatalogPage: React.FC<PublicCatalogPageProps> = ({
   return (
     <ThemeWrapper settings={settings}>
       {/* Top Banner & Header */}
-      <header className="relative bg-neutral-900 border-b border-neutral-800/80 overflow-hidden">
+      <header className="relative bg-neutral-950 border-b border-neutral-800/80 overflow-hidden">
         {(business as any).banner_url ? (
-          <div className="h-44 sm:h-56 w-full relative overflow-hidden">
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
             <img
               src={(business as any).banner_url}
               alt={business.name}
-              className="w-full h-full object-cover opacity-85"
+              className="w-full h-full object-cover object-center scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent" />
+            {/* Lapisan bayangan agar foto membentang luas tapi tulisan kafe tetap kontras dan terbaca */}
+            <div className="absolute inset-0 bg-neutral-950/65 backdrop-blur-[0.5px]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-neutral-950/60" />
           </div>
         ) : (
-          <div className="h-28 sm:h-36 w-full bg-gradient-to-r from-amber-950/40 via-neutral-900 to-amber-950/20 border-b border-neutral-800" />
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-950/30 via-neutral-900 to-amber-950/20" />
         )}
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative pb-5 -mt-12 sm:-mt-16">
-          <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 text-center sm:text-left">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative pt-8 sm:pt-10 pb-6 sm:pb-8">
+          <div className="flex flex-col sm:flex-row items-center sm:items-end gap-5 text-center sm:text-left">
             {/* Logo */}
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900 border-2 border-neutral-800 shadow-2xl shrink-0 p-1">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900/90 border-2 border-neutral-700/80 shadow-2xl shrink-0 p-1 backdrop-blur-md">
               {business.logo_url ? (
                 <img
                   src={business.logo_url}
@@ -486,11 +488,11 @@ export const PublicCatalogPage: React.FC<PublicCatalogPageProps> = ({
             {/* Business Info */}
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
-                <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight drop-shadow-md">
                   {business.name}
                 </h1>
                 {detectedTable && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 backdrop-blur-xs">
                     <MapPin className="w-3 h-3 text-amber-400" />
                     {detectedTable}
                   </span>
@@ -498,16 +500,16 @@ export const PublicCatalogPage: React.FC<PublicCatalogPageProps> = ({
               </div>
 
               {business.description && (
-                <p className="text-xs sm:text-sm text-neutral-400 line-clamp-2 max-w-xl">
+                <p className="text-xs sm:text-sm text-neutral-300 line-clamp-2 max-w-xl drop-shadow-xs">
                   {business.description}
                 </p>
               )}
 
               {/* Action bar info */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mt-3 text-xs text-neutral-300">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mt-3.5 text-xs text-neutral-300">
                 <button
                   onClick={() => setShowBusinessInfo(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-800/80 hover:bg-neutral-800 border border-neutral-700/60 text-neutral-200 transition font-medium cursor-pointer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-700/80 text-neutral-200 transition font-medium cursor-pointer backdrop-blur-md shadow-sm"
                 >
                   <Info className="w-3.5 h-3.5 text-amber-400" />
                   <span>Info Kafe & Jam Buka</span>
@@ -518,7 +520,7 @@ export const PublicCatalogPage: React.FC<PublicCatalogPageProps> = ({
                     href={`https://wa.me/${business.whatsapp.replace(/[^0-9]/g, '')}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-800/50 text-emerald-300 transition font-medium"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/70 border border-emerald-700/60 text-emerald-300 transition font-medium backdrop-blur-md shadow-sm"
                   >
                     <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
                     <span>WhatsApp</span>
