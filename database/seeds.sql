@@ -1,162 +1,207 @@
--- ====================================================================
--- UMKM DIGITAL PLATFORM - SEED DEMO DATA (WARKOP NUSANTARA)
--- Data awal untuk toko tunggal (Jual Putus / 1 Toko Mandiri)
--- ====================================================================
+-- 1. BERSIHKAN DATA LAMA AGAR TIDAK BERCAMPUR
+DELETE FROM order_items;
+DELETE FROM orders;
+DELETE FROM products;
+DELETE FROM categories;
+DELETE FROM settings;
+DELETE FROM users WHERE business_id = 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11' OR business_id = 'b1010101-9c0b-4ef8-bb6d-6bb9bd380001';
+DELETE FROM businesses WHERE slug = 'warkop-nusantara' OR id = 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11';
 
--- 1. DATA AWAL AMAN (Non-destruktif, tidak menghapus data yang sudah ada)
--- Menggunakan ON CONFLICT DO NOTHING agar akun/password/pesanan yang sudah diubah tidak tertimpa
-
--- 2. INSERT BUSINESSES
--- Definisikan UUID tetap agar referensi foreign key mudah diuji
+-- 2. INSERT BUSINESS (KAVARNA COFFEE BAR & KITCHEN)
 INSERT INTO businesses (id, name, slug, description, phone, whatsapp, address, google_maps_url, logo_url)
 VALUES
 (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'Warkop Nusantara',
-    'warkop-nusantara',
-    'Tempat nongkrong santai dengan racikan kopi susu otentik dan camilan warkop nusantara.',
-    '081234567890',
-    '6281234567890',
-    'Jl. Anggrek No. 12, Kebayoran Baru, Jakarta Selatan',
-    'https://maps.google.com/?q=-6.2088,106.8456',
-    'https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&w=300&q=80'
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Kavarna Coffee Bar & Kitchen',
+    'kavarna-coffee',
+    'Specialty coffee bar, signature mocktails, and kitchen comfort food. Suasana nyaman 2 lantai untuk nongkrong, kerja, dan santai.',
+    '081226002000',
+    '6281226002000',
+    'Jl. Veteran No. 51, Jetis, Kec. Sukoharjo, Kabupaten Sukoharjo, Jawa Tengah 57511',
+    'https://maps.google.com/?q=Kavarna+Coffee+Bar+Kitchen+Sukoharjo',
+    'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80'
 )
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET 
+    name = EXCLUDED.name,
+    slug = EXCLUDED.slug,
+    description = EXCLUDED.description,
+    address = EXCLUDED.address;
 
--- 3. INSERT USERS (ADMIN & OWNER)
--- Catatan: password_hash adalah contoh bcrypt hash untuk string "Rahasia123!"
+-- 3. INSERT USERS (ADMIN & OWNER KAVARNA)
 INSERT INTO users (id, business_id, full_name, email, password_hash, role, phone)
 VALUES
 (
-    'u1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'Budi Santoso',
+    'd1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Fajar (Owner Kavarna)',
     'owner.warkop@example.com',
     '$2b$10$s47964VDTB.ecr/5vBO31eKr8CSv3UEVoeQuj1fdvrtZewOCzK666',
     'owner',
-    '081234567890'
+    '081226002000'
 )
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET business_id = EXCLUDED.business_id;
 
--- 4. INSERT SETTINGS (PENGATURAN TEMA DINAMIS)
--- Warkop Nusantara memakai tema warm coffee
+-- 4. INSERT SETTINGS (TEMA GELAP MIDNIGHT NEON)
 INSERT INTO settings (
-    business_id, theme_preset, primary_color, secondary_color, background_color, text_color, 
+    id, business_id, theme_preset, primary_color, secondary_color, background_color, text_color, 
     button_style, card_style, font_family, announcement
 )
 VALUES
 (
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'amber_warm',
-    '#78350f',      -- amber-900 (nuansa kopi)
-    '#d97706',      -- amber-600
-    '#fffbeb',      -- amber-50 (latar hangat)
-    '#1f2937',      -- gray-800
+    'e1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'midnight_neon',
+    '#d97706',      -- amber gold
+    '#b45309',      -- dark amber
+    '#0d0d0f',      -- midnight dark
+    '#f4f4f5',      -- zinc-100 clean text
     'rounded',
     'shadow',
-    'Inter',
-    '☕ Nikmati diskon 15% untuk paket Kopi Susu + Camilan Warkop!'
+    'Plus Jakarta Sans',
+    '✨ Selamat Datang di Kavarna Coffee! Pesan dari meja Anda tanpa perlu antre ke kasir.'
 )
-ON CONFLICT (business_id) DO NOTHING;
+ON CONFLICT (business_id) DO UPDATE SET 
+    theme_preset = EXCLUDED.theme_preset,
+    primary_color = EXCLUDED.primary_color,
+    secondary_color = EXCLUDED.secondary_color,
+    background_color = EXCLUDED.background_color,
+    text_color = EXCLUDED.text_color,
+    announcement = EXCLUDED.announcement;
 
--- 5. INSERT CATEGORIES
--- Kategori Warkop Nusantara
+-- 5. INSERT 6 KATEGORI MENU KAVARNA
 INSERT INTO categories (id, business_id, name, slug, description, display_order)
 VALUES
 (
-    'c1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'Kopi & Signature Drink',
-    'kopi-signature-drink',
-    'Seduhan robusta tubruk, espresso susu aren, dan racikan kopi khas warkop.',
+    'c1000001-9c0b-4ef8-bb6d-6bb9bd380001',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Signature Coffee',
+    'signature-coffee',
+    'Kopi racikan khas Kavarna dengan resep otentik & bahan premium.',
     1
 ),
 (
-    'c1111112-9c0b-4ef8-bb6d-6bb9bd380112',
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'Minuman Segar Non-Kopi',
-    'minuman-segar-non-kopi',
-    'Pelepas dahaga: teh melati jumbo, es jeruk peras murni, dan es cokelat.',
+    'c1000002-9c0b-4ef8-bb6d-6bb9bd380002',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Signature Mocktails & Refreshers',
+    'signature-mocktails',
+    'Sensasi kesegaran buah asli, sparkling soda, dan aroma rempah eksotis.',
     2
+),
+(
+    'c1000003-9c0b-4ef8-bb6d-6bb9bd380003',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Classic Espresso',
+    'classic-espresso',
+    'Seduhan espresso murni, americano, latte, dan cappuccino dari biji kopi pilihan.',
+    3
+),
+(
+    'c1000004-9c0b-4ef8-bb6d-6bb9bd380004',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Sweet Series & Artisan Tea',
+    'sweet-series-artisan-tea',
+    'Pilihan non-kopi creamy matcha, red velvet, cokelat murni & artisan tea.',
+    4
+),
+(
+    'c1000005-9c0b-4ef8-bb6d-6bb9bd380005',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Kitchen & Main Courses',
+    'kitchen-main-courses',
+    'Butter rice katsu, pasta italia, sapo tahu, dan nasi goreng racikan koki Kavarna.',
+    5
+),
+(
+    'c1000006-9c0b-4ef8-bb6d-6bb9bd380006',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Bites & Sharing Platters',
+    'bites-sharing-platters',
+    'Platter komplit, cheesy nachos, fries, bruschetta & camilan nongkrong.',
+    6
 )
 ON CONFLICT (id) DO NOTHING;
 
--- 6. INSERT PRODUCTS
--- Produk Warkop Nusantara
+-- 6. INSERT PRODUK MENU KAVARNA
 INSERT INTO products (
-    id, business_id, category_id, name, slug, description, price, stock, image_url, is_available
+    id, business_id, category_id, name, slug, description, price, stock, image_url, is_available, display_order
 )
 VALUES
 (
-    'p1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'c1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'Kopi Susu Gula Aren',
-    'kopi-susu-gula-aren',
-    'Espresso robusta lokal dipadu susu creamy dan gula aren murni khas nusantara.',
-    18000.00,
+    'f1000001-9c0b-4ef8-bb6d-6bb9bd380001',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'c1000001-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Kopi Susu Veteran',
+    'kopi-susu-veteran',
+    'Signature terlaris Kavarna! Fresh milk, espresso blend, aren organik, cream lembut & evaporasi gurih.',
+    30000.00,
     100,
     'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80',
-    true
+    true,
+    1
 ),
 (
-    'p1111112-9c0b-4ef8-bb6d-6bb9bd380112',
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'c1111112-9c0b-4ef8-bb6d-6bb9bd380112',
-    'Es Teh Manis Jumbo',
-    'es-teh-manis-jumbo',
-    'Seduhan teh melati wangi khas warkop dengan es batu melimpah.',
-    6000.00,
-    250,
-    'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80',
-    true
-)
-ON CONFLICT (id) DO NOTHING;
-
--- 7. INSERT SAMPLE ORDERS & ORDER_ITEMS
-INSERT INTO orders (
-    id, order_number, business_id, customer_name, customer_phone, customer_note, 
-    order_type, table_number, total_amount, status, payment_status, payment_method
-)
-VALUES
-(
-    'o1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'ORD-WARKOP-20261005-001',
-    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
-    'Dimas Aditya',
-    '081211112222',
-    'Kopinya less sugar ya mas',
-    'dine_in',
-    'Meja 04',
-    42000.00,
-    'processing',
-    'paid',
-    'qris'
-)
-ON CONFLICT (id) DO NOTHING;
-
--- Item Pesanan
-INSERT INTO order_items (id, order_id, product_id, product_name, quantity, price, subtotal, item_note)
-VALUES
-(
-    'i1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'o1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'p1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'Kopi Susu Gula Aren',
-    2,
-    18000.00,
+    'f1000002-9c0b-4ef8-bb6d-6bb9bd380002',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'c1000001-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Butterscotch Sea Salt Latte',
+    'butterscotch-sea-salt-latte',
+    'Espresso pekat berpadu sirup butterscotch wangi dan lapisan sea salt cold foam creamy gurih seimbang.',
     36000.00,
-    'Less sugar 50%'
+    80,
+    'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80',
+    true,
+    2
 ),
 (
-    'i1111112-9c0b-4ef8-bb6d-6bb9bd380112',
-    'o1111111-9c0b-4ef8-bb6d-6bb9bd380111',
-    'p1111112-9c0b-4ef8-bb6d-6bb9bd380112',
-    'Es Teh Manis Jumbo',
-    1,
-    6000.00,
-    6000.00,
-    'Es dipisah'
+    'f1000003-9c0b-4ef8-bb6d-6bb9bd380003',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'c1000001-9c0b-4ef8-bb6d-6bb9bd380001',
+    'Nutella Latte',
+    'nutella-latte',
+    'Nutella hazelnut cocoa murni, espresso shot Kavarna, fresh milk, dan whipped cream lembut.',
+    31000.00,
+    60,
+    'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80',
+    true,
+    3
+),
+(
+    'f1000004-9c0b-4ef8-bb6d-6bb9bd380004',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'c1000002-9c0b-4ef8-bb6d-6bb9bd380002',
+    'Lucky Berrys Mocktail',
+    'lucky-berrys',
+    'Mocktail signature Kavarna berisikan buah stroberi segar, blueberry reduction, sparkling soda, dan mint.',
+    35000.00,
+    75,
+    'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80',
+    true,
+    4
+),
+(
+    'f1000005-9c0b-4ef8-bb6d-6bb9bd380005',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'c1000005-9c0b-4ef8-bb6d-6bb9bd380005',
+    'Butter Rice Chicken Katsu',
+    'butter-rice-chicken-katsu',
+    'Nasi butter wangi mentega gurih disajikan dengan fillet dada ayam katsu renyah keemasan & saus kavarna.',
+    36000.00,
+    50,
+    'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80',
+    true,
+    5
+),
+(
+    'f1000006-9c0b-4ef8-bb6d-6bb9bd380006',
+    'b1010101-9c0b-4ef8-bb6d-6bb9bd380001',
+    'c1000006-9c0b-4ef8-bb6d-6bb9bd380006',
+    'Kavarna Platter (Porsi Sharing)',
+    'kavarna-platter',
+    'Menu sharing terlengkap! French fries, chicken strips, cheesy nachos, sosis bakar, dan crispy enoki.',
+    46000.00,
+    60,
+    'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80',
+    true,
+    6
 )
 ON CONFLICT (id) DO NOTHING;
-
