@@ -7,7 +7,7 @@ import { api } from './services/api';
 
 export default function App() {
   const [viewMode, setViewMode] = useState<'public' | 'admin'>('public');
-  const [currentSlug, setCurrentSlug] = useState<string>('warkop-nusantara');
+  const [currentSlug, setCurrentSlug] = useState<string>('kavarna-coffeegit');
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [currentBusiness, setCurrentBusiness] = useState<Business | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
