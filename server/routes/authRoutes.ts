@@ -11,7 +11,6 @@ const JWT_SECRET = process.env.JWT_SECRET || 'umkm-platform-super-secret-jwt-key
 /**
  * POST /api/auth/setup-initial-account
  * Memastikan tersedianya akun admin awal jika database baru / belum ada user.
- * Password langsung di-hash dengan bcrypt, tidak ada plaintext.
  */
 router.post('/setup-initial-account', async (req: Request, res: Response) => {
   try {
@@ -123,15 +122,13 @@ router.put('/profile', authenticateToken, async (req: Request, res: Response) =>
 
 /**
  * PUT /api/auth/change-password
- * Mengganti password user yang sedang login via JWT.
- * Memvalidasi password lama, kecocokan konfirmasi, minimal 8 karakter, dan hashing bcrypt.
+ * Mengganti password user yang sedang login via JWT dengan validasi bcrypt ketat.
  */
 router.put('/change-password', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { currentPassword, newPassword, confirmPassword } = req.body;
     const userId = req.user!.userId;
 
-    // 1. Validasi input kelengkapan
     if (!currentPassword || !newPassword || !confirmPassword) {
       return res.status(400).json({
         success: false,
@@ -139,7 +136,6 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
       });
     }
 
-    // 2. Validasi panjang minimal 8 karakter
     if (newPassword.length < 8) {
       return res.status(400).json({
         success: false,
@@ -147,7 +143,6 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
       });
     }
 
-    // 3. Validasi konfirmasi password
     if (newPassword !== confirmPassword) {
       return res.status(400).json({
         success: false,
@@ -155,7 +150,6 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
       });
     }
 
-    // 4. Validasi password baru tidak boleh sama dengan password lama
     if (newPassword === currentPassword) {
       return res.status(400).json({
         success: false,
@@ -165,7 +159,6 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
 
     let user: any = null;
 
-    // 5. Ambil data user dari PostgreSQL jika pool aktif
     if (pool) {
       try {
         const uRes = await pool.query(
@@ -180,7 +173,6 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
       }
     }
 
-    // Fallback memoryStore jika PostgreSQL tidak aktif atau user belum di DB
     if (!user) {
       user = memoryStore.users.find((u) => u.id === userId);
     }
@@ -192,19 +184,22 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
       });
     }
 
-    // 6. Verifikasi password lama dengan bcrypt.compare()
+    // Verifikasi password lama dengan bcrypt (Ketat & Tanpa Bypass)
     const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password_hash);
     if (!isCurrentPasswordValid) {
       return res.status(400).json({
         success: false,
         message: 'Password saat ini yang Anda masukkan salah.',
+        data: {
+          message: 'Password saat ini yang Anda masukkan salah.',
+        },
       });
     }
 
-    // 7. Hash password baru dengan bcrypt (salt rounds = 10)
+    // Hash password baru dengan bcrypt
     const newPasswordHash = await bcrypt.hash(newPassword, 10);
 
-    // 8. Update password_hash di database PostgreSQL
+    // Update password_hash di database PostgreSQL
     if (pool) {
       try {
         await pool.query(
@@ -216,11 +211,12 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
         return res.status(500).json({
           success: false,
           message: 'Gagal memperbarui password di database.',
+          data: { message: 'Gagal memperbarui password di database.' },
         });
       }
     }
 
-    // Update juga di memoryStore jika ada
+    // Update di memoryStore juga
     const memUser = memoryStore.users.find((u) => u.id === userId);
     if (memUser) {
       memUser.password_hash = newPasswordHash;
@@ -231,19 +227,26 @@ router.put('/change-password', authenticateToken, async (req: Request, res: Resp
     return res.json({
       success: true,
       message: 'Password berhasil diperbarui! Silakan gunakan password baru untuk login berikutnya.',
+      data: {
+        success: true,
+        message: 'Password berhasil diperbarui! Silakan gunakan password baru untuk login berikutnya.',
+      },
     });
   } catch (error: any) {
     console.error('Error in change-password route:', error);
     return res.status(500).json({
       success: false,
       message: 'Terjadi kesalahan pada server saat memproses ganti password.',
+      data: {
+        message: 'Terjadi kesalahan pada server saat memproses ganti password.',
+      },
     });
   }
 });
 
 /**
  * POST /api/auth/login
- * Autentikasi menggunakan email dan password (bcrypt hash)
+ * Autentikasi ketat menggunakan email dan password (bcrypt hash)
  */
 router.post('/login', async (req: Request, res: Response) => {
   try {
@@ -259,7 +262,6 @@ router.post('/login', async (req: Request, res: Response) => {
     let user: any = null;
     let business: any = null;
 
-    // 1. Cek pada PostgreSQL jika pool aktif
     if (pool) {
       try {
         const userRes = await pool.query(
@@ -276,7 +278,6 @@ router.post('/login', async (req: Request, res: Response) => {
       }
     }
 
-    // 2. Fallback to memoryStore
     if (!user) {
       user = memoryStore.users.find(
         (u) => u.email.toLowerCase() === email.trim().toLowerCase() && u.is_active
@@ -293,7 +294,7 @@ router.post('/login', async (req: Request, res: Response) => {
       });
     }
 
-    // Verifikasi password_hash dengan bcrypt
+    // Verifikasi password_hash dengan bcrypt (Standar Keamanan Ketat)
     const isPasswordValid = await bcrypt.compare(password, user.password_hash);
     if (!isPasswordValid) {
       return res.status(401).json({
@@ -311,8 +312,6 @@ router.post('/login', async (req: Request, res: Response) => {
     };
 
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
-
-    // Jangan kirim password_hash ke response
     const { password_hash, ...safeUser } = user;
 
     return res.json({
@@ -335,7 +334,6 @@ router.post('/login', async (req: Request, res: Response) => {
 
 /**
  * GET /api/auth/me
- * Mengambil profil user & data bisnis yang sedang login
  */
 router.get('/me', authenticateToken, async (req: Request, res: Response) => {
   try {

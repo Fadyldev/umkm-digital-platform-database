@@ -26,7 +26,6 @@ async function safeJson(res: Response, fallbackMsg: string): Promise<any> {
 
 /**
  * Kompresi gambar otomatis di sisi browser (Client-Side Canvas Compression)
- * Mengecilkan foto kamera HP 5-10MB menjadi ~80-150KB WebP tanpa mengurangi ketajaman di layar.
  */
 async function compressImageFile(file: File, maxWidth = 1000, quality = 0.8): Promise<File> {
   if (!file || !file.type.startsWith('image/') || file.type === 'image/svg+xml' || file.type === 'image/gif') {
@@ -43,7 +42,6 @@ async function compressImageFile(file: File, maxWidth = 1000, quality = 0.8): Pr
         let width = img.width;
         let height = img.height;
 
-        // Skalakan proporsional jika resolusi melebihi maxWidth
         if (width > maxWidth || height > maxWidth) {
           if (width > height) {
             height = Math.round((height * maxWidth) / width);
@@ -75,7 +73,6 @@ async function compressImageFile(file: File, maxWidth = 1000, quality = 0.8): Pr
               type: 'image/webp',
               lastModified: Date.now(),
             });
-            // Gunakan hasil kompresi hanya jika ukurannya lebih hemat
             resolve(compressedFile.size < file.size ? compressedFile : file);
           },
           'image/webp',
@@ -194,7 +191,10 @@ export const api = {
       body: JSON.stringify(payload),
     });
     const json = await safeJson(res, 'Gagal mengubah password');
-    return json.data;
+    return {
+      success: json?.success ?? true,
+      message: json?.message || json?.data?.message || 'Password berhasil diperbarui.',
+    };
   },
 
   async setupInitialAccount(): Promise<{ success: boolean; message: string }> {
@@ -305,7 +305,7 @@ export const api = {
   },
 
   // -------------------------------------------------------------
-  // ADMIN FILE UPLOADS (SUPABASE STORAGE VIA EXPRESS)
+  // ADMIN FILE UPLOADS
   // -------------------------------------------------------------
   async uploadProductImage(file: File): Promise<string> {
     const optimizedFile = await compressImageFile(file);
